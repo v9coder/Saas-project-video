@@ -1,4 +1,4 @@
-import mongoose, { Schema, model, models } from "mongoose";
+import mongoose, { Schema, model, models, Document } from "mongoose";
 import bcrypt from "bcryptjs";
 
 export interface IUser {
@@ -19,9 +19,12 @@ const userSchema = new Schema<IUser>(
   }
 );
 
+// ✅ Fix the hook with correct typing
 userSchema.pre("save", async function (next) {
-  if (this.isModified("password")) {
-    this.password = await bcrypt.hash(this.password, 10);
+  const user = this as IUser & Document;
+
+  if (user.isModified("password")) {
+    user.password = await bcrypt.hash(user.password, 10);
   }
   next();
 });
