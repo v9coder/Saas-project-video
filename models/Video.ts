@@ -57,6 +57,8 @@ export interface IVideo {
 }
 
 export interface VideoDTO {
+  uploader: string;
+  views: number;
   // views: number;
   // duration: ReactNode;
   _id: string;
