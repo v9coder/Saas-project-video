@@ -57,6 +57,7 @@ export interface IVideo {
 }
 
 export interface VideoDTO {
+  duration: any;
   uploader: string;
   views: number;
   // views: number;
