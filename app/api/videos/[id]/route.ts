@@ -34,15 +34,18 @@ import { NextRequest, NextResponse } from "next/server";
 import { connectToDatabase } from "@/lib/db";
 import Video, { toVideoDTO } from "@/models/Video";
 
-
+// Use the Promise-wrapped type for the context object
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } } // <-- Use this exact inline type
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    // Await the params object to access the 'id'
+    const { id } = await params; 
+
     await connectToDatabase();
 
-    const video = await Video.findById(params.id).lean();
+    const video = await Video.findById(id).lean(); // Use the awaited 'id'
 
     if (!video) {
       return NextResponse.json({ error: "Video not found" }, { status: 404 });
