@@ -10,11 +10,11 @@ export const authOptions: NextAuthOptions = {
       name: "Credentials",
       credentials: {
         email: { label: "Email", type: "text" },
-        password: { label: "Password", type: "password" }, // ✅ fixed
+        password: { label: "Password", type: "password" }, 
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
-          throw new Error("Missing email or password"); // ✅ fixed spelling
+          throw new Error("Missing email or password"); 
 
           console.log("user from db:", User);
           console.log("credentials.password:", credentials?.password);
@@ -32,10 +32,7 @@ export const authOptions: NextAuthOptions = {
             throw new Error("No user found with this email");
           }
 
-          const isValid = await bcrypt.compare(
-            credentials.password,
-            user.password // ✅ fixed spelling
-          );
+          const isValid = await bcrypt.compare(credentials.password, user.password );
 
           if (!isValid) {
             throw new Error("Invalid password");

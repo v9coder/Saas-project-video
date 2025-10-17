@@ -15,7 +15,7 @@ export async function GET(req: NextRequest) {
     // ✅ If authenticated, generate upload parameters
     const { token, expire, signature } = getUploadAuthParams({
       privateKey: process.env.IMAGEKIT_PRIVATE_KEY as string,
-      publicKey: process.env.IMAGEKIT_PUBLIC_KEY as string,
+      publicKey: process.env.NEXT_PUBLIC_IMAGEKIT_PUBLIC_KEY as string, // ✅ matches .env
     });
 
     return NextResponse.json({

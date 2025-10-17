@@ -54,48 +54,52 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-gray-800 flex items-center justify-center px-4">
-      <div className="w-full max-w-md bg-gray-800/40 backdrop-blur-lg border border-gray-700 text-white p-8 rounded-2xl shadow-2xl">
-        <h1 className="text-3xl font-bold mb-6 text-center text-white">Create Account</h1>
-        <form onSubmit={handleSubmit} className="space-y-5">
-          <input
-            type="email"
-            placeholder="Email"
-            className="w-full px-4 py-2 rounded-lg bg-gray-900/60 text-white placeholder-gray-400 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            className="w-full px-4 py-2 rounded-lg bg-gray-900/60 text-white placeholder-gray-400 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <input
-            type="password"
-            placeholder="Confirm Password"
-            className="w-full px-4 py-2 rounded-lg bg-gray-900/60 text-white placeholder-gray-400 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
-          <button
-            type="submit"
-            disabled={loading}
-            className={`w-full py-2 rounded-lg font-semibold text-white transition ${
-              loading ? "bg-gray-700 cursor-not-allowed" : "bg-gray-700 hover:bg-gray-600"
-            }`}
-          >
-            {loading ? "Registering..." : "Register"}
-          </button>
-        </form>
-        <p className="text-center text-sm text-gray-400 mt-6">
-          Already have an account?{" "}
-          <Link href="/login" className="text-gray-300 hover:underline">
-            Login
-          </Link>
-        </p>
-      </div>
+  <div className="h-screen w-full bg-black flex items-center justify-center px-4">
+    <div className="w-full max-w-md bg-gray-800/40 backdrop-blur-lg border border-gray-700 rounded-3xl shadow-2xl p-10">
+      <h1 className="text-4xl font-bold mb-8 text-center text-white">
+        Create Account
+      </h1>
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <input
+          type="email"
+          placeholder="Email"
+          className="w-full px-5 py-3 rounded-xl bg-gray-900/40 text-white placeholder-gray-400 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-rose-500"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          className="w-full px-5 py-3 rounded-xl bg-gray-900/40 text-white placeholder-gray-400 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-rose-500"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Confirm Password"
+          className="w-full px-5 py-3 rounded-xl bg-gray-900/40 text-white placeholder-gray-400 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-rose-500"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+        />
+        <button
+          type="submit"
+          disabled={loading}
+          className={`w-full py-3 rounded-xl font-semibold text-white text-lg transition ${
+            loading
+              ? "bg-rose-700 cursor-not-allowed"
+              : "bg-rose-600 hover:bg-rose-500"
+          }`}
+        >
+          {loading ? "Registering..." : "Register"}
+        </button>
+      </form>
+      <p className="text-center text-gray-400 mt-8 text-sm">
+        Already have an account?{" "}
+        <Link href="/login" className="text-rose-400 hover:underline">
+          Login
+        </Link>
+      </p>
     </div>
-  );
+  </div>
+);
 }

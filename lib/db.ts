@@ -20,7 +20,7 @@ if (!cached) {
 
 export async function connectToDatabase() {
   if (cached.conn) {
-    console.log("✅ Already connected to MongoDB");
+    console.log("Already connected to MongoDB");
     return cached.conn;
   }
 
@@ -35,9 +35,9 @@ export async function connectToDatabase() {
 
   try {
     cached.conn = await cached.promise;
-    console.log("✅ Successfully connected to MongoDB");
+    console.log("Successfully connected to MongoDB");
   } catch (error) {
-    console.error("❌ MongoDB connection error:", error);
+    console.error("MongoDB connection error:", error);
     cached.promise = null;
     throw error;
   }

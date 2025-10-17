@@ -21,10 +21,10 @@ const userSchema = new Schema<IUser>(
 
 // ✅ Fix the hook with correct typing
 userSchema.pre("save", async function (next) {
-  const user = this as IUser & Document;
+  // const user = this as IUser & Document;
 
-  if (user.isModified("password")) {
-    user.password = await bcrypt.hash(user.password, 10);
+  if (this.isModified("password")) {
+    this.password = await bcrypt.hash(this.password, 10);
   }
   next();
 });

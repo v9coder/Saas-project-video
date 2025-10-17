@@ -27,7 +27,7 @@ const FileUpload = ({ onSuccess, onProgress, fileType }: FileUploadProps) => {
       return false;
     }
 
-    if (file.size > 100 * 1024 * 1024) {
+    if (file.size > 100 * 1024 * 1024) { 
       setError("File size must be less than 100 MB");
       toast.error("File too large (max 100MB)");
       return false;
@@ -45,7 +45,7 @@ const FileUpload = ({ onSuccess, onProgress, fileType }: FileUploadProps) => {
     setError(null);
 
     try {
-      const authRes = await fetch("/api/imagekit-auth");
+      const authRes = await fetch("/api/auth/imagekit-auth");
       const auth = await authRes.json();
 
       const res = await upload({
