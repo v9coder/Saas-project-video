@@ -39,7 +39,6 @@
 // const Video = models?.Video || model<IVideo>("Video", videoSchema);
 
 // export default Video;
-
 import mongoose, { Schema, model, models } from "mongoose";
 
 export const VIDEO_DIMENSIONS = { width: 1080, height: 1920 } as const;
@@ -57,11 +56,6 @@ export interface IVideo {
 }
 
 export interface VideoDTO {
-  duration: any;
-  uploader: string;
-  views: number;
-  // views: number;
-  // duration: ReactNode;
   _id: string;
   title: string;
   description: string;
@@ -71,6 +65,9 @@ export interface VideoDTO {
   transformation: { height: number; width: number; quality?: number };
   createdAt: string;
   updatedAt: string;
+  duration?: any;
+  uploader?: string;
+  views?: number;
 }
 
 const videoSchema = new Schema<IVideo>(
@@ -90,36 +87,36 @@ const videoSchema = new Schema<IVideo>(
 );
 
 export function toVideoDTO(video: any): VideoDTO {
-  const id = typeof video._id === "string" ? video._id : video._id?.toString() ?? "";
-  const created =
-    video.createdAt instanceof Date
-      ? video.createdAt.toISOString()
-      : video.createdAt
-      ? new Date(video.createdAt).toISOString()
-      : "";
-  const updated =
-    video.updatedAt instanceof Date
-      ? video.updatedAt.toISOString()
-      : video.updatedAt
-      ? new Date(video.updatedAt).toISOString()
-      : "";
+  const id = video._id?.toString() ?? "";
+  const createdAt = video.createdAt
+    ? new Date(video.createdAt).toISOString()
+    : "";
+  const updatedAt = video.updatedAt
+    ? new Date(video.updatedAt).toISOString()
+    : "";
 
   return {
     _id: id,
-    title: video.title,
-    description: video.description,
-    videoUrl: video.videoUrl,
-    thumbnailUrl: video.thumbnailUrl,
+    title: video.title ?? "",
+    description: video.description ?? "",
+    videoUrl: video.videoUrl ?? "",
+    thumbnailUrl: video.thumbnailUrl ?? "",
     controls: video.controls ?? true,
     transformation: {
       height: video.transformation?.height ?? VIDEO_DIMENSIONS.height,
       width: video.transformation?.width ?? VIDEO_DIMENSIONS.width,
       quality: video.transformation?.quality,
     },
-    createdAt: created,
-    updatedAt: updated,
+    createdAt,
+    updatedAt,
+    duration: video.duration ?? undefined,
+    uploader: video.uploader ?? "",
+    views: video.views ?? 0,
   };
 }
 
-const Video = (models.Video as mongoose.Model<IVideo>) || model<IVideo>("Video", videoSchema);
+const Video =
+  (models.Video as mongoose.Model<IVideo>) ||
+  model<IVideo>("Video", videoSchema);
+
 export default Video;
