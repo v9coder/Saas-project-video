@@ -37,7 +37,7 @@ import Video, { toVideoDTO } from "@/models/Video";
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } } // <--- Change is here
+  { params }: { params: { id: string } } // <-- Use this exact inline type
 ) {
   try {
     await connectToDatabase();
