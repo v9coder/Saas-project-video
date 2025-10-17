@@ -32,10 +32,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { connectToDatabase } from "@/lib/db";
 import Video, { toVideoDTO } from "@/models/Video";
 
-export async function GET(
-  req: NextRequest,
-  context: { params: { id: string } } // context automatically contains params
-) {
+export async function GET(req: NextRequest, context: any) {
+  // Extract id from context.params
   const { id } = context.params;
 
   try {
