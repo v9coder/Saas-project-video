@@ -1,10 +1,7 @@
 import { VideoDTO } from "@/models/Video";
 
-interface VideoPageProps {
-  params: { id: string };
-}
-
-export default async function VideoPage({ params }: VideoPageProps) {
+// @ts-ignore
+export default async function VideoPage({ params }: any) {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/videos/${params.id}`,
     { cache: "no-store" }
