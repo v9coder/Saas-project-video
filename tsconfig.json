@@ -5,7 +5,6 @@
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
-    "noImplicitAny": false,//disable TypeScript/ESLint errors for any
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
